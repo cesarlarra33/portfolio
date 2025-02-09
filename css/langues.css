@@ -1,0 +1,66 @@
+/* Container pour les langues */
+.language-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacement entre l'icône Home et le sélecteur de langue */
+    position: relative;
+  }
+  
+  .language-icon {
+    cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  /* Styles pour les bulles de langue */
+  .language-bubbles {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    gap: 5px;
+    position: absolute;
+    top: 120%; /* Positionné sous l’icône */
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.5s; /* Ajout d'un délai */
+    pointer-events: none;
+  }
+  
+  /* Affiche les bulles au survol de l'icône ou des bulles elles-mêmes */
+  .language-toggle:hover .language-bubbles,
+  .language-bubbles:hover {
+    opacity: 1;
+    transition-delay: 0s;
+    pointer-events: auto;
+  }
+  
+  /* Style des bulles de langue */
+  .lang-bubble {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-family: "Poppins", Arial, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    color: #47b2ff;
+    border: 1px solid #47b2ff;
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+  .lang-bubble {
+    pointer-events: auto;
+  }
+  
+
+
+/* Langue active */
+.current-lang {
+    background: linear-gradient(135deg, #47b2ff, #1d4a8e);
+    color: white;
+    border: none;
+  }
+  
+  .lang-bubble:hover {
+    background-color: #47b2ff;
+    color: #020915;
+  }
