@@ -159,6 +159,38 @@ body {
   }
 }
 
+/* Ajustements iPhone / petits écrans pour le hero */
+@media screen and (max-width: 576px) {
+  /* Remonter légèrement le bloc de texte du hero pour ne pas masquer le visage */
+  /* Neutraliser la translation globale pour pouvoir décaler les lignes indépendamment */
+  .home-slider .slider-item .slider-text .one-forth {
+    transform: none !important;
+  }
+
+  /* Adapter la taille du nom tapé pour éviter le dépassement horizontal */
+  #typewriter {
+    font-size: 34px; /* ou utilisez clamp(26px, 9vw, 36px) si vous préférez */
+  }
+  #cursor {
+    height: 34px;
+  }
+
+  /* Sous-titre et titre secondaire un peu plus petits pour l'iPhone */
+  .slider-text .subheading {
+    font-size: 16px;
+    letter-spacing: 0.02em;
+  }
+  .slider-text h2 {
+    font-size: 18px;
+  }
+  /* Descendre le sous-titre (rôle) plus bas que le bloc d'accueil sans toucher le reste */
+  .home-slider .slider-item .slider-text .one-forth .text h2 {
+    position: relative;
+    display: block;
+    /* On retire l'ancien top ici pour le recalculer plus bas via override final */
+  }
+}
+
 
 #adress {
   color: #fff
@@ -10207,6 +10239,28 @@ textarea.form-control {
 
 
 
+/* ==== Overrides fin de fichier : positionnement précis hero mobile ==== */
+@media screen and (max-width: 576px) {
+  /* Ne pas bouger le HTML, on agit seulement par CSS avec forte priorité */
+  /* Accueil (subheading + h1) remonte légèrement comparé à la base neutre */
+  .owl-carousel.home-slider .slider-item .slider-text .one-forth .text .subheading,
+  .owl-carousel.home-slider .slider-item .slider-text .one-forth .text h1 {
+    position: relative !important;
+    top: -30vh !important; /* ajustable: -5vh à -8vh */
+    transform: none !important;
+    display: block !important;
+    margin: 0 0 4px 0 !important;
+  }
+  /* Rôle (h2) descendu clairement sous le visage */
+  .owl-carousel.home-slider .slider-item .slider-text .one-forth .text h2 {
+    position: relative !important;
+    top: 6vh !important; /* ajustable: 8vh à 16vh */
+    transform: none !important;
+    display: block !important;
+    margin-top: 0 !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4) !important; /* lisibilité */
+  }
+}
 .owl-carousel.home-slider .owl-item .slider-item .one-third.img {
   background-position: center bottom !important;
   background-size: cover !important;

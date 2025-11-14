@@ -75,6 +75,11 @@
 	        scrollTop: $($.attr(this, 'href')).offset().top - 70
 	    }, 500, function() {
 	    	// window.location.hash = href;
+	    	// Fermer le menu déroulant (mobile) après la navigation
+	    	var $nav = $('#ftco-nav');
+	    	if ($nav.hasClass('show')) {
+	    		$nav.collapse('hide');
+	    	}
 	    });
 		});
 
@@ -84,6 +89,7 @@
 	
 
 	var carousel = function() {
+		var isSmallMobile = window.matchMedia('(max-width: 576px)').matches;
 		$('.home-slider').owlCarousel({
 	    loop:true,
 	    autoplay: true,
@@ -94,18 +100,22 @@
 	    autoplayHoverPause: false,
 	    items: 1,
 	    navText : ["<span class='ion-md-arrow-back'></span>","<span class='ion-chevron-right'></span>"],
+	    touchDrag: !isSmallMobile, // désactive le drag tactile pour laisser le scroll vertical iPhone
+	    mouseDrag: !isSmallMobile, // désactive le drag souris sur petit viewport (sécurité)
+	    pullDrag: !isSmallMobile,
 	    responsive:{
-	      0:{
-	        items:1
-	      },
-	      600:{
-	        items:1
-	      },
-	      1000:{
-	        items:1
-	      }
+	      0:{ items:1 },
+	      600:{ items:1 },
+	      1000:{ items:1 }
 	    }
 		});
+		// Ajout défensif: forcer touch-action pan-y sur le conteneur si déjà initialisé
+		if(isSmallMobile){
+			$('.home-slider, .home-slider .slider-item, .home-slider .slider-item .slider-text').css({
+				'touch-action':'pan-y',
+				'-ms-touch-action':'pan-y'
+			});
+		}
 	};
 	carousel();
 
